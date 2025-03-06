@@ -1,0 +1,51 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+body {
+  color: white;
+  background: #000814;
+  background: linear-gradient(to bottom, #000000, #001845);
+}
+
+@font-face {
+  font-family: ".SF Compact";
+  src: local(".SF Compact"), local("SFCompact-Light");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: ".SF Compact";
+  src: local(".SF Compact"), local("SFCompact-Regular");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: ".SF Compact";
+  src: local(".SF Compact"), local("SFCompact-Medium");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: ".SF Compact";
+  src: local(".SF Compact"), local("SFCompact-Semibold");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
