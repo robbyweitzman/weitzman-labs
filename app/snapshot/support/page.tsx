@@ -28,10 +28,10 @@ export default function SnapshotSupportPage() {
             <p className="text-gray-200">
               <strong>Email:</strong>{" "}
               <a
-                href="mailto:support@weitmanlabs.com"
+                href="mailto:support@weitzmanlabs.com"
                 className="text-blue-400 hover:text-blue-300 underline"
               >
-                support@weitmanlabs.com
+                support@weitzmanlabs.com
               </a>
             </p>
             <p className="text-sm text-gray-400 mt-2">
