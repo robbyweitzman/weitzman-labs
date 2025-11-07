@@ -29,6 +29,14 @@ interface Satellite {
   direction: number
 }
 
+interface AppLogo {
+  x: number
+  y: number
+  speed: number
+  direction: number
+  size: number
+}
+
 export default function Home() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const animationRef = useRef<number>(0)
@@ -37,7 +45,9 @@ export default function Home() {
     stars: Star[]
     planes: Plane[]
     satellites: Satellite[]
-  }>({ stars: [], planes: [], satellites: [] })
+    appLogos: AppLogo[]
+  }>({ stars: [], planes: [], satellites: [], appLogos: [] })
+  const logoImageRef = useRef<HTMLImageElement | null>(null)
   
   // Memoize object creation to avoid recreating on each resize
   const createObjects = useCallback((width: number, height: number) => {
@@ -78,7 +88,20 @@ export default function Home() {
       })
     }
 
-    return { stars, planes, satellites }
+    // Create app logos (2-3 instances)
+    const appLogos: AppLogo[] = []
+    const logoCount = 3
+    for (let i = 0; i < logoCount; i++) {
+      appLogos.push({
+        x: Math.random() * width,
+        y: (height / logoCount) * i + Math.random() * (height / logoCount), // Distribute vertically
+        speed: Math.random() * 0.3 + 0.1, // Slow speed like satellites (0.1-0.4)
+        direction: Math.random() > 0.5 ? 1 : -1,
+        size: 60, // Medium size (40-60px) - increased for better clarity
+      })
+    }
+
+    return { stars, planes, satellites, appLogos }
   }, [])
 
   useEffect(() => {
@@ -87,6 +110,10 @@ export default function Home() {
 
     const ctx = canvas.getContext("2d", { alpha: false })
     if (!ctx) return
+
+    // Enable high-quality image rendering for sharp logos
+    ctx.imageSmoothingEnabled = true
+    ctx.imageSmoothingQuality = 'high'
 
     // Throttled resize handler
     let resizeTimeout: NodeJS.Timeout | null = null
@@ -109,7 +136,72 @@ export default function Home() {
     canvas.width = window.innerWidth
     canvas.height = window.innerHeight
     objectsRef.current = createObjects(canvas.width, canvas.height)
-    
+
+    // Load app logo image
+    const logoImg = new Image()
+    logoImg.src = "/icon_256x256 copy.png"
+    logoImageRef.current = logoImg
+
+    // Add click handler for app logos
+    const handleCanvasClick = (event: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect()
+      const clickX = event.clientX - rect.left
+      const clickY = event.clientY - rect.top
+
+      // Check if click is on any logo
+      const { appLogos } = objectsRef.current
+      for (const logo of appLogos) {
+        const logoLeft = logo.x - logo.size / 2
+        const logoRight = logo.x + logo.size / 2
+        const logoTop = logo.y - logo.size / 2
+        const logoBottom = logo.y + logo.size / 2
+
+        if (
+          clickX >= logoLeft &&
+          clickX <= logoRight &&
+          clickY >= logoTop &&
+          clickY <= logoBottom
+        ) {
+          // Open App Store link
+          window.open('https://apps.apple.com/us/app/snapshot-screenshot-to-text/id6754900482?mt=12', '_blank')
+          break
+        }
+      }
+    }
+
+    canvas.addEventListener('click', handleCanvasClick)
+
+    // Change cursor to pointer when hovering over logos
+    const handleMouseMove = (event: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect()
+      const mouseX = event.clientX - rect.left
+      const mouseY = event.clientY - rect.top
+
+      const { appLogos } = objectsRef.current
+      let isOverLogo = false
+
+      for (const logo of appLogos) {
+        const logoLeft = logo.x - logo.size / 2
+        const logoRight = logo.x + logo.size / 2
+        const logoTop = logo.y - logo.size / 2
+        const logoBottom = logo.y + logo.size / 2
+
+        if (
+          mouseX >= logoLeft &&
+          mouseX <= logoRight &&
+          mouseY >= logoTop &&
+          mouseY <= logoBottom
+        ) {
+          isOverLogo = true
+          break
+        }
+      }
+
+      canvas.style.cursor = isOverLogo ? 'pointer' : 'default'
+    }
+
+    canvas.addEventListener('mousemove', handleMouseMove)
+
     window.addEventListener("resize", resizeCanvas)
 
     // Pre-calculate some values outside the animation loop
@@ -141,12 +233,12 @@ export default function Home() {
       frameCountRef.current++
       const frameCount = frameCountRef.current
       const { width, height } = canvas
-      
+
       // Use pre-created gradient background
       ctx.fillStyle = backgroundGradient;
       ctx.fillRect(0, 0, width, height);
 
-      const { stars, planes, satellites } = objectsRef.current
+      const { stars, planes, satellites, appLogos } = objectsRef.current
 
       // Batch similar operations together
       
@@ -213,6 +305,37 @@ export default function Home() {
         ctx.fillStyle = "#aaccff" // Reset fill style
       })
 
+      // Update and draw app logos
+      const logoImg = logoImageRef.current
+      if (logoImg && logoImg.complete) {
+        appLogos.forEach((logo) => {
+          // Move logo
+          logo.x += logo.speed * logo.direction
+
+          // Reset logo position when it goes off screen
+          if (
+            (logo.direction > 0 && logo.x > width + logo.size) ||
+            (logo.direction < 0 && logo.x < -logo.size)
+          ) {
+            logo.x = logo.direction > 0 ? -logo.size : width + logo.size
+            // Randomize vertical position when wrapping around
+            logo.y = Math.random() * height
+          }
+
+          // Draw logo with smooth rendering
+          ctx.save()
+          ctx.globalAlpha = 0.9 // Slight transparency for blending
+          ctx.drawImage(
+            logoImg,
+            logo.x - logo.size / 2,
+            logo.y - logo.size / 2,
+            logo.size,
+            logo.size
+          )
+          ctx.restore()
+        })
+      }
+
       animationRef.current = requestAnimationFrame(animate)
     }
 
@@ -221,6 +344,8 @@ export default function Home() {
     // Cleanup
     return () => {
       window.removeEventListener("resize", resizeCanvas)
+      canvas.removeEventListener('click', handleCanvasClick)
+      canvas.removeEventListener('mousemove', handleMouseMove)
       if (resizeTimeout) clearTimeout(resizeTimeout)
       cancelAnimationFrame(animationRef.current)
     }
