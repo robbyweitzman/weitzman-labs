@@ -35,6 +35,7 @@ interface AppLogo {
   speed: number
   direction: number
   size: number
+  appType: 'snapshot' | 'hopescroll'
 }
 
 export default function Home() {
@@ -47,7 +48,8 @@ export default function Home() {
     satellites: Satellite[]
     appLogos: AppLogo[]
   }>({ stars: [], planes: [], satellites: [], appLogos: [] })
-  const logoImageRef = useRef<HTMLImageElement | null>(null)
+  const snapshotImageRef = useRef<HTMLImageElement | null>(null)
+  const hopescrollImageRef = useRef<HTMLImageElement | null>(null)
   
   // Memoize object creation to avoid recreating on each resize
   const createObjects = useCallback((width: number, height: number) => {
@@ -88,16 +90,33 @@ export default function Home() {
       })
     }
 
-    // Create app logos (2-3 instances)
+    // Create app logos (3 Snapshot + 3 HopeScroll instances)
     const appLogos: AppLogo[] = []
-    const logoCount = 3
-    for (let i = 0; i < logoCount; i++) {
+    const snapshotCount = 3
+    const hopescrollCount = 3
+    const totalCount = snapshotCount + hopescrollCount
+
+    // Add Snapshot logos
+    for (let i = 0; i < snapshotCount; i++) {
       appLogos.push({
         x: Math.random() * width,
-        y: (height / logoCount) * i + Math.random() * (height / logoCount), // Distribute vertically
+        y: (height / totalCount) * (i * 2) + Math.random() * (height / totalCount), // Distribute vertically
         speed: Math.random() * 0.3 + 0.1, // Slow speed like satellites (0.1-0.4)
         direction: Math.random() > 0.5 ? 1 : -1,
         size: 60, // Medium size (40-60px) - increased for better clarity
+        appType: 'snapshot'
+      })
+    }
+
+    // Add HopeScroll logos
+    for (let i = 0; i < hopescrollCount; i++) {
+      appLogos.push({
+        x: Math.random() * width,
+        y: (height / totalCount) * (i * 2 + 1) + Math.random() * (height / totalCount), // Interleave with Snapshot
+        speed: Math.random() * 0.3 + 0.1, // Slow speed like satellites (0.1-0.4)
+        direction: Math.random() > 0.5 ? 1 : -1,
+        size: 60, // Medium size (40-60px) - increased for better clarity
+        appType: 'hopescroll'
       })
     }
 
@@ -137,10 +156,14 @@ export default function Home() {
     canvas.height = window.innerHeight
     objectsRef.current = createObjects(canvas.width, canvas.height)
 
-    // Load app logo image
-    const logoImg = new Image()
-    logoImg.src = "/icon_256x256 copy.png"
-    logoImageRef.current = logoImg
+    // Load app logo images
+    const snapshotImg = new Image()
+    snapshotImg.src = "/snapshot-icon-256x256.png"
+    snapshotImageRef.current = snapshotImg
+
+    const hopescrollImg = new Image()
+    hopescrollImg.src = "/hopescroll-icon-256x256.png"
+    hopescrollImageRef.current = hopescrollImg
 
     // Add click handler for app logos
     const handleCanvasClick = (event: MouseEvent) => {
@@ -162,8 +185,12 @@ export default function Home() {
           clickY >= logoTop &&
           clickY <= logoBottom
         ) {
-          // Open App Store link
-          window.open('https://apps.apple.com/us/app/snapshot-screenshot-to-text/id6754900482?mt=12', '_blank')
+          // Open App Store link based on app type
+          if (logo.appType === 'snapshot') {
+            window.open('https://apps.apple.com/us/app/snapshot-screenshot-to-text/id6754900482?mt=12', '_blank')
+          } else if (logo.appType === 'hopescroll') {
+            window.open('https://apps.apple.com/us/app/hopescroll-daily-motivation/id6755077908', '_blank')
+          }
           break
         }
       }
@@ -306,23 +333,26 @@ export default function Home() {
       })
 
       // Update and draw app logos
-      const logoImg = logoImageRef.current
-      if (logoImg && logoImg.complete) {
-        appLogos.forEach((logo) => {
-          // Move logo
-          logo.x += logo.speed * logo.direction
+      const snapshotImg = snapshotImageRef.current
+      const hopescrollImg = hopescrollImageRef.current
 
-          // Reset logo position when it goes off screen
-          if (
-            (logo.direction > 0 && logo.x > width + logo.size) ||
-            (logo.direction < 0 && logo.x < -logo.size)
-          ) {
-            logo.x = logo.direction > 0 ? -logo.size : width + logo.size
-            // Randomize vertical position when wrapping around
-            logo.y = Math.random() * height
-          }
+      appLogos.forEach((logo) => {
+        // Move logo
+        logo.x += logo.speed * logo.direction
 
-          // Draw logo with smooth rendering
+        // Reset logo position when it goes off screen
+        if (
+          (logo.direction > 0 && logo.x > width + logo.size) ||
+          (logo.direction < 0 && logo.x < -logo.size)
+        ) {
+          logo.x = logo.direction > 0 ? -logo.size : width + logo.size
+          // Randomize vertical position when wrapping around
+          logo.y = Math.random() * height
+        }
+
+        // Draw logo with smooth rendering
+        const logoImg = logo.appType === 'snapshot' ? snapshotImg : hopescrollImg
+        if (logoImg && logoImg.complete) {
           ctx.save()
           ctx.globalAlpha = 0.9 // Slight transparency for blending
           ctx.drawImage(
@@ -333,8 +363,8 @@ export default function Home() {
             logo.size
           )
           ctx.restore()
-        })
-      }
+        }
+      })
 
       animationRef.current = requestAnimationFrame(animate)
     }
