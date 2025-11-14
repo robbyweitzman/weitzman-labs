@@ -134,7 +134,12 @@ export default function Home() {
     ctx.imageSmoothingEnabled = true
     ctx.imageSmoothingQuality = 'high'
 
-    // Create gradient background once for reuse
+    // Initial setup - set canvas dimensions FIRST
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
+    objectsRef.current = createObjects(canvas.width, canvas.height)
+
+    // Create gradient background once for reuse (AFTER canvas dimensions are set)
     const createGradient = () => {
       const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
       gradient.addColorStop(0, '#000000');
@@ -165,11 +170,6 @@ export default function Home() {
         resizeTimeout = null
       }, 200) // 200ms throttle
     }
-
-    // Initial setup
-    canvas.width = window.innerWidth
-    canvas.height = window.innerHeight
-    objectsRef.current = createObjects(canvas.width, canvas.height)
 
     // Load app logo images
     const snapshotImg = new Image()
