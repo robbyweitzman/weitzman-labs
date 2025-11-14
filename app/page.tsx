@@ -134,15 +134,30 @@ export default function Home() {
     ctx.imageSmoothingEnabled = true
     ctx.imageSmoothingQuality = 'high'
 
+    // Create gradient background once for reuse
+    const createGradient = () => {
+      const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+      gradient.addColorStop(0, '#000000');
+      gradient.addColorStop(1, '#001845');
+      return gradient;
+    }
+
+    let backgroundGradient = createGradient();
+
+    // Update gradient on resize
+    const updateGradientOnResize = () => {
+      backgroundGradient = createGradient();
+    };
+
     // Throttled resize handler
     let resizeTimeout: NodeJS.Timeout | null = null
     const resizeCanvas = () => {
       if (resizeTimeout) return
-      
+
       resizeTimeout = setTimeout(() => {
         canvas.width = window.innerWidth
         canvas.height = window.innerHeight
-        
+
         // Only recreate objects when dimensions change significantly
         objectsRef.current = createObjects(canvas.width, canvas.height)
         // Update gradient when canvas is resized
@@ -239,21 +254,6 @@ export default function Home() {
       ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2)
       ctx.fill()
     }
-
-    // Create gradient background once for reuse
-    const createGradient = () => {
-      const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-      gradient.addColorStop(0, '#000000');
-      gradient.addColorStop(1, '#001845');
-      return gradient;
-    }
-    
-    let backgroundGradient = createGradient();
-    
-    // Update gradient on resize
-    const updateGradientOnResize = () => {
-      backgroundGradient = createGradient();
-    };
 
     // Animation loop with optimized rendering
     const animate = () => {
