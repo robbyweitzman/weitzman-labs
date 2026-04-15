@@ -137,15 +137,25 @@ export default function Home() {
     const ctx = canvas.getContext("2d", { alpha: false })
     if (!ctx) return
 
-    ctx.imageSmoothingEnabled = true
-    ctx.imageSmoothingQuality = 'high'
+    const dpr = window.devicePixelRatio || 1
 
-    canvas.width = window.innerWidth
-    canvas.height = window.innerHeight
-    objectsRef.current = createObjects(canvas.width, canvas.height)
+    const setupCanvas = () => {
+      const w = window.innerWidth
+      const h = window.innerHeight
+      canvas.width = w * dpr
+      canvas.height = h * dpr
+      canvas.style.width = `${w}px`
+      canvas.style.height = `${h}px`
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+      ctx.imageSmoothingEnabled = true
+      ctx.imageSmoothingQuality = 'high'
+    }
+
+    setupCanvas()
+    objectsRef.current = createObjects(window.innerWidth, window.innerHeight)
 
     const createGradient = () => {
-      const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height)
+      const gradient = ctx.createLinearGradient(0, 0, 0, window.innerHeight)
       gradient.addColorStop(0, '#000000')
       gradient.addColorStop(1, '#001845')
       return gradient
@@ -157,9 +167,8 @@ export default function Home() {
     const resizeCanvas = () => {
       if (resizeTimeout) return
       resizeTimeout = setTimeout(() => {
-        canvas.width = window.innerWidth
-        canvas.height = window.innerHeight
-        objectsRef.current = createObjects(canvas.width, canvas.height)
+        setupCanvas()
+        objectsRef.current = createObjects(window.innerWidth, window.innerHeight)
         backgroundGradient = createGradient()
         resizeTimeout = null
       }, 200)
@@ -205,7 +214,8 @@ export default function Home() {
     const animate = () => {
       frameCountRef.current++
       const frameCount = frameCountRef.current
-      const { width, height } = canvas
+      const width = window.innerWidth
+      const height = window.innerHeight
       const { stars, planes, satellites, appLogos } = objectsRef.current
 
       ctx.fillStyle = backgroundGradient
