@@ -31,14 +31,8 @@ interface Satellite {
 }
 
 const APPS = [
-  {
-    icon: "/snapshot-icon-256x256.png",
-    url: "https://apps.apple.com/us/app/snapshot-screenshot-to-text/id6754900482?mt=12",
-  },
-  {
-    icon: "/hopescroll-icon-256x256.png",
-    url: "https://apps.apple.com/us/app/hopescroll-daily-motivation/id6755077908",
-  },
+  { icon: "/snapshot-icon-256x256.png", url: "https://trysnapshot.vercel.app/" },
+  { icon: "/hopescroll-icon-256x256.png", url: "https://tryhopescroll.vercel.app/" },
   { icon: "/dictionary-icon-256x256.png", url: "https://dictionary-offline.vercel.app/" },
   { icon: "/hug-icon-256x256.png", url: "https://sendahug.app/" },
   { icon: "/tiramisu-icon-256x256.png", url: "https://trytiramisu.vercel.app/" },
