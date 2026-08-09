@@ -28,6 +28,9 @@
   letter-spacing: -0.02em;
   margin: 0;
   padding: 0;
+  /* Let clicks through to the canvas so logos drifting behind the title
+     stay clickable. */
+  pointer-events: none;
 }
 
 @media (max-width: 768px) {
