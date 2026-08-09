@@ -30,13 +30,29 @@ interface Satellite {
   direction: number
 }
 
+const APPS = [
+  {
+    icon: "/snapshot-icon-256x256.png",
+    url: "https://apps.apple.com/us/app/snapshot-screenshot-to-text/id6754900482?mt=12",
+  },
+  {
+    icon: "/hopescroll-icon-256x256.png",
+    url: "https://apps.apple.com/us/app/hopescroll-daily-motivation/id6755077908",
+  },
+  { icon: "/dictionary-icon-256x256.png", url: "https://dictionary-offline.vercel.app/" },
+  { icon: "/hug-icon-256x256.png", url: "https://sendahug.app/" },
+  { icon: "/tiramisu-icon-256x256.png", url: "https://trytiramisu.vercel.app/" },
+] as const
+
+const LOGOS_PER_APP = 3
+
 interface AppLogo {
   x: number
   y: number
   speed: number
   direction: number
   size: number
-  appType: 'snapshot' | 'hopescroll'
+  appIndex: number
 }
 
 function hitTestLogos(logos: AppLogo[], x: number, y: number): AppLogo | null {
@@ -64,8 +80,7 @@ export default function Home() {
     satellites: Satellite[]
     appLogos: AppLogo[]
   }>({ stars: [], planes: [], satellites: [], appLogos: [] })
-  const snapshotImageRef = useRef<HTMLImageElement | null>(null)
-  const hopescrollImageRef = useRef<HTMLImageElement | null>(null)
+  const logoImagesRef = useRef<HTMLImageElement[]>([])
 
   const createObjects = useCallback((width: number, height: number) => {
     const stars: Star[] = []
@@ -103,28 +118,20 @@ export default function Home() {
     }
 
     const appLogos: AppLogo[] = []
-    const totalCount = 6
+    const totalCount = APPS.length * LOGOS_PER_APP
+    const band = height / totalCount
 
-    for (let i = 0; i < 3; i++) {
-      appLogos.push({
-        x: Math.random() * width,
-        y: (height / totalCount) * (i * 2) + Math.random() * (height / totalCount),
-        speed: Math.random() * 0.3 + 0.1,
-        direction: Math.random() > 0.5 ? 1 : -1,
-        size: 60,
-        appType: 'snapshot',
-      })
-    }
-
-    for (let i = 0; i < 3; i++) {
-      appLogos.push({
-        x: Math.random() * width,
-        y: (height / totalCount) * (i * 2 + 1) + Math.random() * (height / totalCount),
-        speed: Math.random() * 0.3 + 0.1,
-        direction: Math.random() > 0.5 ? 1 : -1,
-        size: 60,
-        appType: 'hopescroll',
-      })
+    for (let i = 0; i < LOGOS_PER_APP; i++) {
+      for (let appIndex = 0; appIndex < APPS.length; appIndex++) {
+        appLogos.push({
+          x: Math.random() * width,
+          y: band * (i * APPS.length + appIndex) + Math.random() * band,
+          speed: Math.random() * 0.3 + 0.1,
+          direction: Math.random() > 0.5 ? 1 : -1,
+          size: 60,
+          appIndex,
+        })
+      }
     }
 
     return { stars, planes, satellites, appLogos }
@@ -174,13 +181,11 @@ export default function Home() {
       }, 200)
     }
 
-    const snapshotImg = new Image()
-    snapshotImg.src = "/snapshot-icon-256x256.png"
-    snapshotImageRef.current = snapshotImg
-
-    const hopescrollImg = new Image()
-    hopescrollImg.src = "/hopescroll-icon-256x256.png"
-    hopescrollImageRef.current = hopescrollImg
+    logoImagesRef.current = APPS.map((app) => {
+      const img = new Image()
+      img.src = app.icon
+      return img
+    })
 
     const handleCanvasClick = (event: MouseEvent) => {
       const rect = canvas.getBoundingClientRect()
@@ -190,10 +195,7 @@ export default function Home() {
         event.clientY - rect.top,
       )
       if (logo) {
-        const url = logo.appType === 'snapshot'
-          ? 'https://apps.apple.com/us/app/snapshot-screenshot-to-text/id6754900482?mt=12'
-          : 'https://apps.apple.com/us/app/hopescroll-daily-motivation/id6755077908'
-        window.open(url, '_blank')
+        window.open(APPS[logo.appIndex].url, '_blank')
       }
     }
 
@@ -282,8 +284,7 @@ export default function Home() {
       }
 
       // App logos
-      const snapshotLogoImg = snapshotImageRef.current
-      const hopescrollLogoImg = hopescrollImageRef.current
+      const logoImages = logoImagesRef.current
 
       for (const logo of appLogos) {
         logo.x += logo.speed * logo.direction
@@ -296,7 +297,7 @@ export default function Home() {
           logo.y = Math.random() * height
         }
 
-        const logoImg = logo.appType === 'snapshot' ? snapshotLogoImg : hopescrollLogoImg
+        const logoImg = logoImages[logo.appIndex]
         if (logoImg && logoImg.complete) {
           ctx.save()
           ctx.globalAlpha = 0.9
