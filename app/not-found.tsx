@@ -1,25 +1,16 @@
 import Link from 'next/link'
-import styles from './page.module.css'
+import styles from './message.module.css'
 
 export default function NotFound() {
   return (
-    <main className={styles.main}>
-      <div className={styles.canvas}></div>
-      <div style={{ zIndex: 2, textAlign: 'center' }}>
-        <h1 className={styles.title}>404</h1>
-        <p style={{ color: 'white', marginTop: '1rem', fontSize: '1.2rem' }}>
-          Page not found
-        </p>
-        <Link href="/" style={{ 
-          color: 'white', 
-          marginTop: '2rem', 
-          display: 'inline-block',
-          textDecoration: 'underline',
-          fontSize: '1rem'
-        }}>
-          Return Home
+    <main className={styles.page} data-theme="cream">
+      <h1 className={styles.code}>404</h1>
+      <p className={styles.message}>Page not found</p>
+      <div className={styles.actions}>
+        <Link href="/" className={styles.link}>
+          Return home
         </Link>
       </div>
     </main>
   )
-} 
+}

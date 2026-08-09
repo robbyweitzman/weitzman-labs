@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import styles from './page.module.css'
+import styles from './message.module.css'
 
 export default function GlobalError({
   error,
@@ -17,26 +17,14 @@ export default function GlobalError({
 
   return (
     <html lang="en">
-      <body>
-        <main className={styles.main}>
-          <div className={styles.canvas}></div>
-          <div style={{ zIndex: 2, textAlign: 'center' }}>
-            <h1 className={styles.title}>Server Error</h1>
-            <p style={{ color: 'white', marginTop: '1rem', fontSize: '1.2rem' }}>
-              Something went wrong on our server
-            </p>
-            <button
-              onClick={reset}
-              style={{
-                background: 'white',
-                color: 'black',
-                border: 'none',
-                padding: '0.5rem 1rem',
-                borderRadius: '4px',
-                cursor: 'pointer',
-                marginTop: '2rem',
-              }}
-            >
+      {/* global-error replaces the root layout, so globals.css and its reset
+          never load here — zero the default body margin by hand. */}
+      <body style={{ margin: 0 }}>
+        <main className={styles.page} data-theme="cream">
+          <h1 className={styles.code}>Server Error</h1>
+          <p className={styles.message}>Something went wrong on our server</p>
+          <div className={styles.actions}>
+            <button onClick={reset} className={styles.button}>
               Try again
             </button>
           </div>
@@ -44,4 +32,4 @@ export default function GlobalError({
       </body>
     </html>
   )
-} 
+}

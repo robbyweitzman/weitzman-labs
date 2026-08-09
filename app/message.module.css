@@ -1,0 +1,85 @@
+/* Shared cream styling for the standalone status pages: not-found, error, and
+   global-error. They used to borrow the landing page's stylesheet, which broke
+   when the cream page took over app/page.module.css. */
+.page {
+  --cream: #f7f0e3;
+  --ink: #241f1a;
+  --ink-soft: #6d6154;
+
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: clamp(1.5rem, 6vw, 2.5rem);
+  background: var(--cream);
+  color: var(--ink);
+  font-family: ui-rounded, "SF Pro Rounded", -apple-system, "Segoe UI", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.code {
+  font-size: clamp(3rem, 12vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.message {
+  margin-top: 0.75rem;
+  font-size: clamp(1rem, 4vw, 1.125rem);
+  font-weight: 500;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+.actions {
+  margin-top: clamp(1.75rem, 5vh, 2.5rem);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.link,
+.button {
+  /* Buttons don't inherit the page font on their own. */
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  padding: 0.625rem 1.125rem;
+  cursor: pointer;
+  transition: background-color 150ms ease;
+}
+
+.link {
+  color: var(--ink);
+  text-decoration: none;
+  background: transparent;
+  border: none;
+}
+
+.button {
+  color: var(--cream);
+  background: var(--ink);
+  border: none;
+}
+
+@media (hover: hover) {
+  .link:hover {
+    background-color: rgba(36, 31, 26, 0.06);
+  }
+
+  .button:hover {
+    background-color: #3a322a;
+  }
+}
+
+.link:focus-visible,
+.button:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
