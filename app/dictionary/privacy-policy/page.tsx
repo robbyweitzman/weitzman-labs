@@ -41,21 +41,17 @@ export default function DictionaryPrivacyPolicyPage() {
             <p className="text-gray-700 mb-4">
               None. Dictionary makes no network requests of any kind — the
               entire dictionary is bundled inside the app — so there is no
-              server to send anything to and no account to create. Three things
+              server to send anything to and no account to create. Two things
               are stored locally on your iPhone, for the app&apos;s own use:
             </p>
             <ul className="list-disc list-inside space-y-2 text-gray-700 ml-4">
               <li>
-                <strong>Words you look up</strong> — kept as a history list so
-                you can find them again.
+                <strong>Words you look up</strong> — kept as a history list,
+                capped at the 200 most recent, so you can find them again.
               </li>
               <li>
                 <strong>Words you favorite</strong> — kept as a list you
                 control.
-              </li>
-              <li>
-                <strong>Your browse-depth setting</strong> — whether the A–Z
-                list shows the Reader or the Complete word set.
               </li>
             </ul>
           </section>
@@ -108,8 +104,8 @@ export default function DictionaryPrivacyPolicyPage() {
               How Your Information Is Used
             </h2>
             <p className="text-gray-700">
-              Your history, favorites, and browse setting are used only to draw
-              those screens on your own device. Nothing else.
+              Your history and favorites are used only to draw those two screens
+              on your own device. Nothing else.
             </p>
           </section>
 
@@ -145,11 +141,11 @@ export default function DictionaryPrivacyPolicyPage() {
               Data Storage and Security
             </h2>
             <p className="text-gray-700">
-              History, favorites, and settings live in the app&apos;s private
-              container on your iPhone, protected by iOS app sandboxing and
-              device encryption. If you have iPhone backups turned on, that
-              container is included in your Apple device backup, encrypted under
-              your Apple account — we have no access to it and receive no copy.
+              History and favorites live in the app&apos;s private container on
+              your iPhone, protected by iOS app sandboxing and device
+              encryption. If you have iPhone backups turned on, that container
+              is included in your Apple device backup, encrypted under your
+              Apple account — we have no access to it and receive no copy.
             </p>
           </section>
 
