@@ -21,6 +21,23 @@ body {
   background: linear-gradient(to bottom, #000000, #001845);
 }
 
+/* Pages that opt into the cream palette (currently /2) override the dark
+   gradient above, so overscroll and the page background stay in step. */
+body:has([data-theme="cream"]) {
+  color: #241f1a;
+  background: #f7f0e3;
+}
+
+/* These pages scroll with their content. The `height: 100%` above pins html
+   and body to the viewport, which — combined with overflow-x: hidden — makes
+   body a scroll container the wheel never reaches, clipping anything past the
+   fold. The homepage wants that (its canvas is viewport-sized); a list of apps
+   does not. */
+html:has([data-theme="cream"]),
+body:has([data-theme="cream"]) {
+  height: auto;
+}
+
 @font-face {
   font-family: ".SF Compact";
   src: local(".SF Compact"), local("SFCompact-Light");
