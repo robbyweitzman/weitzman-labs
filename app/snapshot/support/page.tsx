@@ -169,10 +169,10 @@ export default function SnapshotSupportPage() {
                 <li>
                   If the issue persists, email us at{" "}
                   <a
-                    href="mailto:support@weitmanlabs.com"
+                    href="mailto:robby@weitzmanlabs.com"
                     className="text-blue-400 hover:text-blue-300 underline"
                   >
-                    support@weitmanlabs.com
+                    robby@weitzmanlabs.com
                   </a>{" "}
                   with your macOS version and steps to reproduce
                 </li>
