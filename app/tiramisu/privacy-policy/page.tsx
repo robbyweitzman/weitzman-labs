@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function TiramisuPrivacyPolicyPage() {
   return (
     <div className="min-h-screen bg-white text-black">
-      <div className="container mx-auto px-4 py-12 max-w-4xl">
+      <div className="container mx-auto px-4 py-12 max-w-2xl">
         {/* Header */}
         <header className="mb-12">
           <h1 className="text-4xl md:text-5xl font-semibold mb-4">
@@ -41,7 +41,7 @@ export default function TiramisuPrivacyPolicyPage() {
             <p className="text-gray-700 mb-4">
               When you sign in and start logging slices, we collect:
             </p>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 ml-4">
+            <ul className="list-disc list-outside space-y-2 text-gray-700 pl-6">
               <li>
                 <strong>Your Apple account identifier</strong> — provided by
                 Sign in with Apple to create and secure your account. We ask
@@ -85,7 +85,7 @@ export default function TiramisuPrivacyPolicyPage() {
               Information We DO NOT Collect
             </h2>
             <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
-              <ul className="list-disc list-inside space-y-2 text-gray-700 ml-4">
+              <ul className="list-disc list-outside space-y-2 text-gray-700 pl-6">
                 <li>
                   We do <strong>not</strong> store your location. Your
                   device&apos;s location is used on the device to center the map
@@ -142,7 +142,7 @@ export default function TiramisuPrivacyPolicyPage() {
               mode, and what you post is visible to everyone using it — not only
               to the people who follow you.
             </p>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 ml-4">
+            <ul className="list-disc list-outside space-y-2 text-gray-700 pl-6">
               <li>
                 <strong>Your profile</strong> — username, display name, and city
                 are visible to everyone, including in user search.
@@ -283,10 +283,10 @@ export default function TiramisuPrivacyPolicyPage() {
               <p className="text-gray-700">
                 <strong>Questions about this policy or your data:</strong>{" "}
                 <a
-                  href="mailto:support@weitzmanlabs.com"
+                  href="mailto:robby@weitzmanlabs.com"
                   className="text-blue-600 hover:text-blue-500 underline"
                 >
-                  support@weitzmanlabs.com
+                  robby@weitzmanlabs.com
                 </a>
               </p>
             </div>

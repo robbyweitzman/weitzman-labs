@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 export default function SnapshotPrivacyPolicyPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-black to-[#001845] text-white">
-      <div className="container mx-auto px-4 py-12 max-w-4xl">
+      <div className="container mx-auto px-4 py-12 max-w-2xl">
         {/* Header */}
         <header className="mb-12">
           <h1 className="text-4xl md:text-5xl font-semibold mb-4">
@@ -38,7 +38,7 @@ export default function SnapshotPrivacyPolicyPage() {
             <p className="text-gray-200 mb-4">
               <strong>Snapshot does NOT collect any data, including:</strong>
             </p>
-            <ul className="list-disc list-inside space-y-2 text-gray-200 ml-4">
+            <ul className="list-disc list-outside space-y-2 text-gray-200 pl-6">
               <li>Screenshots or images you capture</li>
               <li>Text extracted from screenshots</li>
               <li>Usage statistics or analytics</li>
@@ -61,7 +61,7 @@ export default function SnapshotPrivacyPolicyPage() {
 
             <div className="mb-6">
               <h3 className="text-xl font-semibold mb-3 text-white">How it works:</h3>
-              <ol className="list-decimal list-inside space-y-2 text-gray-200 ml-4">
+              <ol className="list-decimal list-outside space-y-2 text-gray-200 pl-6">
                 <li>You trigger a screenshot capture using the hotkey (⌘⌥⇧4)</li>
                 <li>The screenshot is captured to your clipboard</li>
                 <li>Snapshot reads the image from your clipboard</li>
@@ -76,7 +76,7 @@ export default function SnapshotPrivacyPolicyPage() {
 
             <div className="bg-white/5 border border-white/10 rounded-lg p-6">
               <h3 className="text-xl font-semibold mb-3 text-white">Key privacy principles:</h3>
-              <ul className="list-disc list-inside space-y-2 text-gray-200 ml-4">
+              <ul className="list-disc list-outside space-y-2 text-gray-200 pl-6">
                 <li>No screenshots are saved or stored by Snapshot</li>
                 <li>No extracted text is logged or retained</li>
                 <li>All processing happens in memory and is discarded immediately</li>
@@ -93,7 +93,7 @@ export default function SnapshotPrivacyPolicyPage() {
             <p className="text-gray-200 mb-4">
               <strong>Snapshot does NOT store any user data.</strong>
             </p>
-            <ul className="list-disc list-inside space-y-2 text-gray-200 ml-4 mb-6">
+            <ul className="list-disc list-outside space-y-2 text-gray-200 mb-6 pl-6">
               <li>Screenshots are processed in memory only and never saved to disk</li>
               <li>Extracted text is not retained after being copied to clipboard</li>
               <li>No files are created or saved containing user data</li>
@@ -105,7 +105,7 @@ export default function SnapshotPrivacyPolicyPage() {
 
             <div className="bg-white/5 border border-white/10 rounded-lg p-6">
               <h3 className="text-xl font-semibold mb-3 text-white">Local storage only includes:</h3>
-              <ul className="list-disc list-inside space-y-2 text-gray-200 ml-4">
+              <ul className="list-disc list-outside space-y-2 text-gray-200 pl-6">
                 <li>App preferences (hotkey configuration, notification settings)</li>
                 <li>Launch at login preference</li>
                 <li>Stored locally on your Mac using macOS standard UserDefaults</li>
@@ -122,7 +122,7 @@ export default function SnapshotPrivacyPolicyPage() {
             <p className="text-gray-200 mb-4">
               <strong>Snapshot does NOT use any third-party services</strong>, including:
             </p>
-            <ul className="list-disc list-inside space-y-2 text-gray-200 ml-4 mb-6">
+            <ul className="list-disc list-outside space-y-2 text-gray-200 mb-6 pl-6">
               <li>No analytics tools or crash reporting</li>
               <li>No advertising networks or trackers</li>
               <li>No cloud services or remote servers</li>
@@ -132,7 +132,7 @@ export default function SnapshotPrivacyPolicyPage() {
 
             <div className="bg-white/5 border border-white/10 rounded-lg p-6">
               <h3 className="text-xl font-semibold mb-3 text-white">Apple's Vision framework:</h3>
-              <ul className="list-disc list-inside space-y-2 text-gray-200 ml-4">
+              <ul className="list-disc list-outside space-y-2 text-gray-200 pl-6">
                 <li>Built into macOS (not a third-party service)</li>
                 <li>Processes all text recognition on-device</li>
                 <li>No data sent to Apple servers</li>
@@ -149,7 +149,7 @@ export default function SnapshotPrivacyPolicyPage() {
             <p className="text-gray-200 mb-4">
               <strong>Snapshot does NOT require an internet connection</strong> to function.
             </p>
-            <ul className="list-disc list-inside space-y-2 text-gray-200 ml-4 mb-6">
+            <ul className="list-disc list-outside space-y-2 text-gray-200 mb-6 pl-6">
               <li>All features work completely offline</li>
               <li>No network requests are made during normal operation</li>
               <li>No data is transmitted over the internet</li>
@@ -160,7 +160,7 @@ export default function SnapshotPrivacyPolicyPage() {
               <h3 className="text-xl font-semibold mb-3 text-white">
                 The only network access (optional):
               </h3>
-              <ul className="list-disc list-inside space-y-2 text-gray-200 ml-4">
+              <ul className="list-disc list-outside space-y-2 text-gray-200 pl-6">
                 <li>Opening documentation links (when you click help links)</li>
                 <li>Opening privacy policy (this page, when you click the link in Settings)</li>
                 <li>Checking for App Store updates (handled by macOS, not the app)</li>
@@ -182,7 +182,7 @@ export default function SnapshotPrivacyPolicyPage() {
                 <h3 className="text-xl font-semibold mb-3 text-white">
                   Screen Recording Permission (Required)
                 </h3>
-                <ul className="list-disc list-inside space-y-2 text-gray-200 ml-4">
+                <ul className="list-disc list-outside space-y-2 text-gray-200 pl-6">
                   <li>
                     <strong>Purpose:</strong> Required to capture screenshots for text extraction
                   </li>
@@ -208,7 +208,7 @@ export default function SnapshotPrivacyPolicyPage() {
                 <h3 className="text-xl font-semibold mb-3 text-white">
                   Accessibility Permission (Optional)
                 </h3>
-                <ul className="list-disc list-inside space-y-2 text-gray-200 ml-4">
+                <ul className="list-disc list-outside space-y-2 text-gray-200 pl-6">
                   <li>
                     <strong>Purpose:</strong> Only required if you want to use the global hotkey
                     feature (⌘⌥⇧4)
@@ -236,7 +236,7 @@ export default function SnapshotPrivacyPolicyPage() {
                 <h3 className="text-xl font-semibold mb-3 text-white">
                   Clipboard Access (Automatic)
                 </h3>
-                <ul className="list-disc list-inside space-y-2 text-gray-200 ml-4">
+                <ul className="list-disc list-outside space-y-2 text-gray-200 pl-6">
                   <li>
                     <strong>Purpose:</strong> Read screenshot from clipboard, write extracted text to
                     clipboard
@@ -260,7 +260,7 @@ export default function SnapshotPrivacyPolicyPage() {
 
               <div className="bg-white/5 border border-white/10 rounded-lg p-6">
                 <h3 className="text-xl font-semibold mb-3 text-white">Notifications (Optional)</h3>
-                <ul className="list-disc list-inside space-y-2 text-gray-200 ml-4">
+                <ul className="list-disc list-outside space-y-2 text-gray-200 pl-6">
                   <li>
                     <strong>Purpose:</strong> Display brief notifications when text extraction
                     completes
@@ -291,7 +291,7 @@ export default function SnapshotPrivacyPolicyPage() {
             <p className="text-gray-200 mb-4">
               <strong>How we protect your privacy:</strong>
             </p>
-            <ol className="list-decimal list-inside space-y-2 text-gray-200 ml-4">
+            <ol className="list-decimal list-outside space-y-2 text-gray-200 pl-6">
               <li>
                 <strong>On-Device Processing:</strong> All text extraction happens locally using
                 Apple's Vision framework
@@ -344,7 +344,7 @@ export default function SnapshotPrivacyPolicyPage() {
 
             <div className="bg-white/5 border border-white/10 rounded-lg p-6">
               <h3 className="text-xl font-semibold mb-3 text-white">Revoking permissions:</h3>
-              <ul className="list-disc list-inside space-y-2 text-gray-200 ml-4">
+              <ul className="list-disc list-outside space-y-2 text-gray-200 pl-6">
                 <li>Screen Recording: System Settings &gt; Privacy & Security &gt; Screen Recording</li>
                 <li>Accessibility: System Settings &gt; Privacy & Security &gt; Accessibility</li>
                 <li>
@@ -380,7 +380,7 @@ export default function SnapshotPrivacyPolicyPage() {
 
             <div className="bg-white/5 border border-white/10 rounded-lg p-6">
               <h3 className="text-xl font-semibold mb-3 text-white">How you'll be notified:</h3>
-              <ul className="list-disc list-inside space-y-2 text-gray-200 ml-4">
+              <ul className="list-disc list-outside space-y-2 text-gray-200 pl-6">
                 <li>Updated "Last Updated" date at the top of this policy</li>
                 <li>Changes noted in app release notes (if significant)</li>
                 <li>Updated policy available in app Settings</li>
@@ -398,7 +398,7 @@ export default function SnapshotPrivacyPolicyPage() {
               <h3 className="text-xl font-semibold mb-3 text-white">
                 App Store Privacy Nutrition Label:
               </h3>
-              <ul className="list-disc list-inside space-y-2 text-gray-200 ml-4">
+              <ul className="list-disc list-outside space-y-2 text-gray-200 pl-6">
                 <li>Data Collection: <strong>None</strong></li>
                 <li>Data Tracking: <strong>None</strong></li>
                 <li>Data Linked to You: <strong>None</strong></li>
@@ -428,10 +428,10 @@ export default function SnapshotPrivacyPolicyPage() {
               <p className="text-gray-200 mb-2">
                 <strong>Email:</strong>{" "}
                 <a
-                  href="mailto:support@weitzmanlabs.com"
+                  href="mailto:robby@weitzmanlabs.com"
                   className="text-blue-400 hover:text-blue-300 underline"
                 >
-                  support@weitzmanlabs.com
+                  robby@weitzmanlabs.com
                 </a>
               </p>
               <p className="text-gray-200 mb-2">
@@ -465,7 +465,7 @@ export default function SnapshotPrivacyPolicyPage() {
               <h3 className="text-xl font-semibold mb-3 text-white">
                 When you press the hotkey (⌘⌥⇧4):
               </h3>
-              <ol className="list-decimal list-inside space-y-2 text-gray-200 ml-4">
+              <ol className="list-decimal list-outside space-y-2 text-gray-200 pl-6">
                 <li>macOS's native screenshot tool launches</li>
                 <li>You select an area on screen</li>
                 <li>Screenshot is saved to clipboard (by macOS)</li>
@@ -508,7 +508,7 @@ export default function SnapshotPrivacyPolicyPage() {
 
             <div className="bg-white/5 border border-white/10 rounded-lg p-6">
               <h3 className="text-xl font-semibold mb-3 text-white">What you can verify:</h3>
-              <ul className="list-disc list-inside space-y-2 text-gray-200 ml-4">
+              <ul className="list-disc list-outside space-y-2 text-gray-200 pl-6">
                 <li>All processing is on-device (no network activity)</li>
                 <li>No data collection or storage</li>
                 <li>Minimal permissions requested</li>
@@ -560,7 +560,7 @@ export default function SnapshotPrivacyPolicyPage() {
         {/* Footer */}
         <footer className="text-center mt-16 pt-8 border-t border-white/10">
           <p className="text-gray-500 text-sm">
-            © 2025 Weitzman Labs LLC. All rights reserved.
+            © 2026 Weitzman Labs LLC. All rights reserved.
           </p>
         </footer>
       </div>

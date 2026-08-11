@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function SnapshotSupportPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-black to-[#001845] text-white">
-      <div className="container mx-auto px-4 py-12 max-w-4xl">
+      <div className="container mx-auto px-4 py-12 max-w-2xl">
         {/* Header */}
         <header className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-semibold mb-4">Snapshot Support</h1>
@@ -28,10 +28,10 @@ export default function SnapshotSupportPage() {
             <p className="text-gray-200">
               <strong>Email:</strong>{" "}
               <a
-                href="mailto:support@weitzmanlabs.com"
+                href="mailto:robby@weitzmanlabs.com"
                 className="text-blue-400 hover:text-blue-300 underline"
               >
-                support@weitzmanlabs.com
+                robby@weitzmanlabs.com
               </a>
             </p>
             <p className="text-sm text-gray-400 mt-2">
@@ -51,7 +51,7 @@ export default function SnapshotSupportPage() {
           <CardContent className="space-y-4">
             <div>
               <h3 className="font-semibold text-white mb-2">How to use Snapshot:</h3>
-              <ol className="list-decimal list-inside space-y-2 text-gray-200">
+              <ol className="list-decimal list-outside space-y-2 text-gray-200 pl-6">
                 <li>Launch Snapshot (it appears in your menu bar)</li>
                 <li>Press ⌘⌥⇧4 (Command + Option + Shift + 4)</li>
                 <li>Select the area containing text</li>
@@ -88,7 +88,7 @@ export default function SnapshotSupportPage() {
               </p>
               <div className="bg-black/30 p-4 rounded-lg">
                 <p className="font-semibold text-white mb-2">To grant permission:</p>
-                <ol className="list-decimal list-inside space-y-1 text-gray-200 text-sm">
+                <ol className="list-decimal list-outside space-y-1 text-gray-200 text-sm pl-6">
                   <li>Open <strong>System Settings</strong></li>
                   <li>
                     Go to <strong>Privacy & Security</strong> → <strong>Screen Recording</strong>
@@ -110,7 +110,7 @@ export default function SnapshotSupportPage() {
               </p>
               <div className="bg-black/30 p-4 rounded-lg">
                 <p className="font-semibold text-white mb-2">To grant permission:</p>
-                <ol className="list-decimal list-inside space-y-1 text-gray-200 text-sm">
+                <ol className="list-decimal list-outside space-y-1 text-gray-200 text-sm pl-6">
                   <li>Open <strong>System Settings</strong></li>
                   <li>
                     Go to <strong>Privacy & Security</strong> → <strong>Accessibility</strong>
@@ -135,7 +135,7 @@ export default function SnapshotSupportPage() {
           <CardContent className="space-y-6">
             <div>
               <h3 className="font-semibold text-white mb-2">Hotkey not working</h3>
-              <ul className="list-disc list-inside space-y-1 text-gray-200">
+              <ul className="list-disc list-outside space-y-1 text-gray-200 pl-6">
                 <li>Check that you've granted Accessibility permission (see above)</li>
                 <li>Make sure no other app is using ⌘⌥⇧4</li>
                 <li>Try restarting Snapshot from the menu bar icon</li>
@@ -143,7 +143,7 @@ export default function SnapshotSupportPage() {
             </div>
             <div>
               <h3 className="font-semibold text-white mb-2">No text being extracted</h3>
-              <ul className="list-disc list-inside space-y-1 text-gray-200">
+              <ul className="list-disc list-outside space-y-1 text-gray-200 pl-6">
                 <li>Ensure Screen Recording permission is granted</li>
                 <li>Try switching to "Accurate" mode in Settings for better results</li>
                 <li>Make sure the screenshot contains clear, readable text</li>
@@ -153,7 +153,7 @@ export default function SnapshotSupportPage() {
             <div>
               <h3 className="font-semibold text-white mb-2">Slow extraction</h3>
               <p className="text-gray-200 mb-2">Typical extraction times:</p>
-              <ul className="list-disc list-inside space-y-1 text-gray-200">
+              <ul className="list-disc list-outside space-y-1 text-gray-200 pl-6">
                 <li><strong>Fast mode</strong> (default): 0.1-0.3 seconds</li>
                 <li><strong>Accurate mode</strong>: 0.5-1 second</li>
               </ul>
@@ -163,7 +163,7 @@ export default function SnapshotSupportPage() {
             </div>
             <div>
               <h3 className="font-semibold text-white mb-2">App crashes</h3>
-              <ul className="list-disc list-inside space-y-1 text-gray-200">
+              <ul className="list-disc list-outside space-y-1 text-gray-200 pl-6">
                 <li>Make sure you're running macOS 13.0 (Ventura) or later</li>
                 <li>Try reinstalling the app</li>
                 <li>
@@ -227,7 +227,7 @@ export default function SnapshotSupportPage() {
           <CardContent className="space-y-4">
             <div>
               <h3 className="font-semibold text-white mb-2">System Requirements</h3>
-              <ul className="list-disc list-inside space-y-1 text-gray-200">
+              <ul className="list-disc list-outside space-y-1 text-gray-200 pl-6">
                 <li>
                   <strong>macOS:</strong> 13.0 (Ventura) or later
                 </li>
@@ -252,7 +252,7 @@ export default function SnapshotSupportPage() {
             </div>
             <div>
               <h3 className="font-semibold text-white mb-2">OCR Speed Benchmarks</h3>
-              <ul className="list-disc list-inside space-y-1 text-gray-200">
+              <ul className="list-disc list-outside space-y-1 text-gray-200 pl-6">
                 <li>
                   <strong>Fast mode:</strong> 0.1-0.3 seconds per screenshot
                 </li>
@@ -272,7 +272,7 @@ export default function SnapshotSupportPage() {
           <CardContent>
             <div>
               <h3 className="font-semibold text-white mb-2">Version 1.0.0 (Current)</h3>
-              <ul className="list-disc list-inside space-y-1 text-gray-200">
+              <ul className="list-disc list-outside space-y-1 text-gray-200 pl-6">
                 <li>Initial release</li>
                 <li>Fast OCR text extraction (&lt;1 second)</li>
                 <li>Multi-language support</li>
@@ -289,7 +289,7 @@ export default function SnapshotSupportPage() {
             Made with care by Weitzman Labs LLC
           </p>
           <p className="text-gray-500 text-sm mt-2">
-            © 2025 Weitzman Labs LLC. All rights reserved.
+            © 2026 Weitzman Labs LLC. All rights reserved.
           </p>
         </footer>
       </div>

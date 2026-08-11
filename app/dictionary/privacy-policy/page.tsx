@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function DictionaryPrivacyPolicyPage() {
   return (
     <div className="min-h-screen bg-white text-black">
-      <div className="container mx-auto px-4 py-12 max-w-4xl">
+      <div className="container mx-auto px-4 py-12 max-w-2xl">
         {/* Header */}
         <header className="mb-12">
           <h1 className="text-4xl md:text-5xl font-semibold mb-4">
@@ -44,7 +44,7 @@ export default function DictionaryPrivacyPolicyPage() {
               server to send anything to and no account to create. Two things
               are stored locally on your iPhone, for the app&apos;s own use:
             </p>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 ml-4">
+            <ul className="list-disc list-outside space-y-2 text-gray-700 pl-6">
               <li>
                 <strong>Words you look up</strong> — kept as a history list,
                 capped at the 200 most recent, so you can find them again.
@@ -64,7 +64,7 @@ export default function DictionaryPrivacyPolicyPage() {
               Information We DO NOT Collect
             </h2>
             <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
-              <ul className="list-disc list-inside space-y-2 text-gray-700 ml-4">
+              <ul className="list-disc list-outside space-y-2 text-gray-700 pl-6">
                 <li>
                   We do <strong>not</strong> make network requests. The app
                   works fully in airplane mode.
@@ -160,7 +160,7 @@ export default function DictionaryPrivacyPolicyPage() {
               You can remove anything at any time, in the app, without
               contacting anyone:
             </p>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 ml-4">
+            <ul className="list-disc list-outside space-y-2 text-gray-700 pl-6">
               <li>
                 <strong>A single word</strong> — swipe it away in History or
                 Favorites.
@@ -215,10 +215,10 @@ export default function DictionaryPrivacyPolicyPage() {
               <p className="text-gray-700">
                 <strong>Questions about this policy or your data:</strong>{" "}
                 <a
-                  href="mailto:support@weitzmanlabs.com"
+                  href="mailto:robby@weitzmanlabs.com"
                   className="text-blue-600 hover:text-blue-500 underline"
                 >
-                  support@weitzmanlabs.com
+                  robby@weitzmanlabs.com
                 </a>
               </p>
             </div>

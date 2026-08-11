@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function DictionaryTermsOfServicePage() {
   return (
     <div className="min-h-screen bg-white text-black">
-      <div className="container mx-auto px-4 py-12 max-w-4xl">
+      <div className="container mx-auto px-4 py-12 max-w-2xl">
         {/* Header */}
         <header className="mb-12">
           <h1 className="text-4xl md:text-5xl font-semibold mb-4">
@@ -217,10 +217,10 @@ export default function DictionaryTermsOfServicePage() {
               <p className="text-gray-700">
                 <strong>Questions about these terms:</strong>{" "}
                 <a
-                  href="mailto:support@weitzmanlabs.com"
+                  href="mailto:robby@weitzmanlabs.com"
                   className="text-blue-600 hover:text-blue-500 underline"
                 >
-                  support@weitzmanlabs.com
+                  robby@weitzmanlabs.com
                 </a>
               </p>
             </div>
